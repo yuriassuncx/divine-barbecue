@@ -7,7 +7,7 @@ export function Menu() {
   const { data } = useGetMenusQuery();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-3 items-center justify-center mx-3 md:mx-auto text-white pt-12 cursor-pointer max-w-3xl">
+    <div className="flex flex-col md:flex-row gap-3 items-center justify-center mx-3 md:mx-auto text-white pt-12 cursor-pointer max-w-3xl">
       {data?.cardapios.map((menu) => (
         <Link to={user ? `/admin/cardapios/${menu.slug}` : `/cardapios/${menu.slug}`} key={menu.id} className="group relative overflow-hidden rounded-xl hover:cursor-pointer">
           <div className="group-hover:bg-black/70 absolute z-40 transition-all duration-300" />
