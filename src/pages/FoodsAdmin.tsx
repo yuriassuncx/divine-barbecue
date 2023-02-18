@@ -74,8 +74,8 @@ export function FoodsAdmin() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-2 lg:mx-0 h-screen text-white">
-      <h1 className="font-bold text-3xl">{data.cardapio.title} - Página do Admin</h1>
+    <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-6 lg:mx-0 h-screen text-white">
+      <h1 className="font-bold text-3xl text-center">{data.cardapio.title} - Página do Admin</h1>
 
       <div
         onDrop={handleOnDrop}

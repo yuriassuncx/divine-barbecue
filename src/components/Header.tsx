@@ -1,6 +1,6 @@
 import { useApplication } from '../hooks/useApplication';
 import { Link } from 'react-router-dom';
-import { data } from '../constants/data';
+import { userData } from '../constants/data';
 
 import * as Popover from '@radix-ui/react-popover';
 
@@ -11,10 +11,10 @@ export function Header() {
 
   return (
     <div className="flex relative items-center justify-between bg-red-700 w-full px-4 lg:px-12 py-6 text-slate-50">
-      <div className="flex flex-col leading-3 tracking-wide font-bold cursor-pointer hover:scale-105 duration-150 transition-all">
+      <Link to={'/'} className="flex flex-col leading-3 tracking-wide font-bold cursor-pointer hover:scale-105 duration-150 transition-all">
         <h1 className="text-4xl">Divine</h1>
         <p className="flex pl-10 text-orange-400">Barbecue</p>
-      </div>
+      </Link>
 
       <button
         className="flex lg:hidden relative hover:bg-zinc-400 p-2 rounded-full opacity-90"
@@ -63,8 +63,8 @@ export function Header() {
               <X className="bg-black p-1 rounded-full" size={30} />
             </button>
 
-            <div className="flex flex-col gap-3 items-center justify-center pt-12">
-              {data.map((item, index) => (
+            <div className="flex flex-col gap-3 items-center justify-center pt-6">
+              {userData.map((item, index) => (
                 <Link
                   key={index}
                   to={item.path}
