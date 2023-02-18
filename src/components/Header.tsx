@@ -1,5 +1,5 @@
 import { useApplication } from '../hooks/useApplication';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userData } from '../constants/data';
 
 import * as Popover from '@radix-ui/react-popover';
@@ -8,6 +8,18 @@ import { CaretDown, List, X } from 'phosphor-react';
 
 export function Header() {
   const { isActiveMenu, setIsActiveMenu, user, logout } = useApplication();
+  const navigate = useNavigate();
+
+  function logoutUser() {
+    logout();
+
+    setIsActiveMenu((prev) => !prev);
+  }
+
+  function navigateToSignIn() {
+    setIsActiveMenu((prev) => !prev);
+    navigate('/login');
+  }
 
   return (
     <div className="flex relative items-center justify-between bg-red-700 w-full px-4 lg:px-12 py-6 text-slate-50">
@@ -73,6 +85,12 @@ export function Header() {
                   {item.title}
                 </Link>
               ))}
+
+              {user ? (
+                <p onClick={logoutUser}>Logout</p>
+              ) : (
+                <p onClick={navigateToSignIn}>Entrar como Admin</p>
+              )}
             </div>
           </div>
         </>

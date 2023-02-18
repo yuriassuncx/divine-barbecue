@@ -41,10 +41,6 @@ export const userData = [
   {
     title: 'Contato',
     path: '/contato',
-  },
-  {
-    title: 'Entrar como Admin',
-    path: '/login',
   }
 ]
 
