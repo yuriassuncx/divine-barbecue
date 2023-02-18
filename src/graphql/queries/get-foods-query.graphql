@@ -1,0 +1,10 @@
+query GetFoods {
+  comidas {
+    id
+    slug
+    name
+    photo {
+      url
+    }
+  }
+}

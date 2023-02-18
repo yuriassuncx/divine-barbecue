@@ -1,0 +1,8 @@
+mutation InsertFoodToMenu ($name: String!, $slug: String!, $foodSlug: String!) {
+  updateComida(
+    data: {cardapios: {connect: {where: {slug: $slug}}}, name: $name}
+    where: {slug: $foodSlug}
+  ) {
+    id
+  }
+}

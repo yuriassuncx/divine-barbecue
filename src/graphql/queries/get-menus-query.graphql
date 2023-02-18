@@ -1,0 +1,10 @@
+query GetMenus {
+  cardapios {
+    id
+    slug
+    title
+    photo {
+      url
+    }
+  }
+}

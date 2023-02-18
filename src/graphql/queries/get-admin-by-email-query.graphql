@@ -1,0 +1,11 @@
+query GetAdminByEmail ($email: String!) {
+  admin(where: {email: $email}) {
+    id
+    name
+    password
+    email
+    photoUrl {
+      url
+    }
+  }
+}

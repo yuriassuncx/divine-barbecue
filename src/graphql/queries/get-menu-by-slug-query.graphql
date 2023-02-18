@@ -1,0 +1,14 @@
+query GetMenuBySlug ($slug: String) {
+  cardapio(where: {slug: $slug}) {
+    title
+    slug
+    comidas {
+      id
+      slug
+      name
+      photo {
+        url
+      }
+    }
+  }
+}
