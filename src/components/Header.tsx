@@ -24,7 +24,7 @@ export function Header() {
   return (
     <div className="flex relative items-center justify-between bg-red-700 w-full px-4 lg:px-12 py-6 text-slate-50">
       <Link to={'/'} className="flex flex-col leading-3 tracking-wide font-bold cursor-pointer hover:scale-105 duration-150 transition-all">
-        <img src="/Logo.png" alt="Logo Divine Barbecue" className="w-20" />
+        <img src="/FirstLogo.png" alt="Logo Divine Barbecue" className="w-40 h-16" />
       </Link>
 
       <button
@@ -46,8 +46,9 @@ export function Header() {
           </Popover.Trigger>
 
           <Popover.Portal>
-            <Popover.Content className={`${user ? 'flex flex-col' : 'hidden'} min-w-[200px] p-6 rounded-2xl gap-2 bg-zinc-900 text-white ml-1 lg:ml-0`}>
-                <Link to={'/admin/cardapios/'} className="font-semibold text-zinc-400/90 hover:text-zinc-400">Cadastrar produtos</Link>
+            <Popover.Content className={`${user ? 'flex flex-col' : 'hidden'} min-w-[200px] items-center p-6 rounded-2xl gap-2 bg-zinc-900 text-white ml-1 lg:ml-0`}>
+                <Link to={'/admin/cardapios/'} className="font-semibold text-zinc-400/90 hover:text-zinc-400">Inserir no cardápio</Link>
+                <Link to={'/admin/comidas/'} className="font-semibold text-zinc-400/90 hover:text-zinc-400">Cadastrar comida</Link>
                 <button
                   onClick={logout}
                   className="font-semibold text-zinc-400/90 hover:text-zinc-400"

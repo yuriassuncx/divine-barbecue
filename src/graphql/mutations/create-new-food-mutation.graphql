@@ -1,0 +1,5 @@
+mutation CreateNewFood ($name: String!, $slug: String!) {
+  createComida(data: {name: $name, slug: $slug}) {
+    id
+  }
+}

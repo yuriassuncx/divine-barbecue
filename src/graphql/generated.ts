@@ -5076,6 +5076,14 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type CreateNewFoodMutationVariables = Exact<{
+  name: Scalars['String'];
+  slug: Scalars['String'];
+}>;
+
+
+export type CreateNewFoodMutation = { __typename?: 'Mutation', createComida?: { __typename?: 'Comida', id: string } | null };
+
 export type DisconnectFoodFromMenuMutationVariables = Exact<{
   slug: Scalars['String'];
   foodSlug: Scalars['String'];
@@ -5118,6 +5126,40 @@ export type GetMenusQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetMenusQuery = { __typename?: 'Query', cardapios: Array<{ __typename?: 'Cardapio', id: string, slug: string, title: string, photo?: { __typename?: 'Asset', url: string } | null }> };
 
 
+export const CreateNewFoodDocument = gql`
+    mutation CreateNewFood($name: String!, $slug: String!) {
+  createComida(data: {name: $name, slug: $slug}) {
+    id
+  }
+}
+    `;
+export type CreateNewFoodMutationFn = Apollo.MutationFunction<CreateNewFoodMutation, CreateNewFoodMutationVariables>;
+
+/**
+ * __useCreateNewFoodMutation__
+ *
+ * To run a mutation, you first call `useCreateNewFoodMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateNewFoodMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createNewFoodMutation, { data, loading, error }] = useCreateNewFoodMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useCreateNewFoodMutation(baseOptions?: Apollo.MutationHookOptions<CreateNewFoodMutation, CreateNewFoodMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateNewFoodMutation, CreateNewFoodMutationVariables>(CreateNewFoodDocument, options);
+      }
+export type CreateNewFoodMutationHookResult = ReturnType<typeof useCreateNewFoodMutation>;
+export type CreateNewFoodMutationResult = Apollo.MutationResult<CreateNewFoodMutation>;
+export type CreateNewFoodMutationOptions = Apollo.BaseMutationOptions<CreateNewFoodMutation, CreateNewFoodMutationVariables>;
 export const DisconnectFoodFromMenuDocument = gql`
     mutation DisconnectFoodFromMenu($slug: String!, $foodSlug: String!) {
   updateCardapio(
