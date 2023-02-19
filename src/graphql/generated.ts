@@ -5076,6 +5076,14 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type DisconnectFoodFromMenuMutationVariables = Exact<{
+  slug: Scalars['String'];
+  foodSlug: Scalars['String'];
+}>;
+
+
+export type DisconnectFoodFromMenuMutation = { __typename?: 'Mutation', updateCardapio?: { __typename?: 'Cardapio', id: string } | null };
+
 export type InsertFoodToMenuMutationVariables = Exact<{
   name: Scalars['String'];
   slug: Scalars['String'];
@@ -5110,6 +5118,43 @@ export type GetMenusQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetMenusQuery = { __typename?: 'Query', cardapios: Array<{ __typename?: 'Cardapio', id: string, slug: string, title: string, photo?: { __typename?: 'Asset', url: string } | null }> };
 
 
+export const DisconnectFoodFromMenuDocument = gql`
+    mutation DisconnectFoodFromMenu($slug: String!, $foodSlug: String!) {
+  updateCardapio(
+    data: {comidas: {disconnect: {slug: $foodSlug}}}
+    where: {slug: $slug}
+  ) {
+    id
+  }
+}
+    `;
+export type DisconnectFoodFromMenuMutationFn = Apollo.MutationFunction<DisconnectFoodFromMenuMutation, DisconnectFoodFromMenuMutationVariables>;
+
+/**
+ * __useDisconnectFoodFromMenuMutation__
+ *
+ * To run a mutation, you first call `useDisconnectFoodFromMenuMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDisconnectFoodFromMenuMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [disconnectFoodFromMenuMutation, { data, loading, error }] = useDisconnectFoodFromMenuMutation({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *      foodSlug: // value for 'foodSlug'
+ *   },
+ * });
+ */
+export function useDisconnectFoodFromMenuMutation(baseOptions?: Apollo.MutationHookOptions<DisconnectFoodFromMenuMutation, DisconnectFoodFromMenuMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DisconnectFoodFromMenuMutation, DisconnectFoodFromMenuMutationVariables>(DisconnectFoodFromMenuDocument, options);
+      }
+export type DisconnectFoodFromMenuMutationHookResult = ReturnType<typeof useDisconnectFoodFromMenuMutation>;
+export type DisconnectFoodFromMenuMutationResult = Apollo.MutationResult<DisconnectFoodFromMenuMutation>;
+export type DisconnectFoodFromMenuMutationOptions = Apollo.BaseMutationOptions<DisconnectFoodFromMenuMutation, DisconnectFoodFromMenuMutationVariables>;
 export const InsertFoodToMenuDocument = gql`
     mutation InsertFoodToMenu($name: String!, $slug: String!, $foodSlug: String!) {
   updateComida(

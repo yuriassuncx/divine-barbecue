@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import {
   useGetMenuBySlugQuery,
   useGetFoodsQuery,
@@ -7,8 +8,9 @@ import {
 } from '../graphql/generated';
 
 import { Card } from '../components/Card';
-
+import * as Dialog from '@radix-ui/react-dialog';
 import toast from 'react-hot-toast';
+import { RemoveFoodFromMenu } from '../components/RemoveFoodFromMenu';
 
 export function FoodsAdmin() {
   const { slug } = useParams<{ slug: string }>();
@@ -19,9 +21,13 @@ export function FoodsAdmin() {
     },
   });
 
-  const [widgets, setWidgets] = useState<string[]>([]);
+  const [foodTitle, setFoodTitle] = useState("");
+  const [foodSlug, setFoodSlug] = useState("");
+  const [foodId, setFoodId] = useState("");
 
+  const [widgets, setWidgets] = useState<string[]>([]);
   const [insertFoodToMenu, { loading }] = useInsertFoodToMenuMutation();
+  const [isRemoveFoodFromMenuModalOpened, setIsRemoveFoodFromMenuModalOpened] = useState(false);
 
   async function handleCreateFood(foodName: string, foodSlug: string) {
     if (widgets.includes(foodName)) {
@@ -41,6 +47,13 @@ export function FoodsAdmin() {
         slug: slug!
       },
     })
+  }
+
+  function handleRemoveFood(title: string, foodSlug: string, foodId: string) {
+    setFoodTitle(title);
+    setFoodSlug(foodSlug);
+    setFoodId(foodId)
+    setIsRemoveFoodFromMenuModalOpened((prev) => !prev);
   }
 
   if (!data || !data.cardapio) {
@@ -74,6 +87,7 @@ export function FoodsAdmin() {
   }
 
   return (
+    <>
     <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-6 lg:mx-0 h-screen text-white">
       <h1 className="font-bold text-3xl text-center">{data.cardapio.title} - Página do Admin</h1>
 
@@ -83,11 +97,23 @@ export function FoodsAdmin() {
         className={`p-6 pb-3 h-[80vh] lg:w-[60vh] rounded-md border-2 border-opacity-30 shadow-lg border-white ${slug === 'cardapio-simples' ? 'bg-card_simples' : 'bg-card_vip'} bg-cover bg-no-repeat`}
       >
         <div className="grid grid-cols-2 gap-3">
-          {data.cardapio.comidas.map((item, index) => (
-            <div className="uppercase tracking-wider" key={index}>
-              {item.name}
-            </div>
-          ))}
+          <Dialog.Root>
+            {data.cardapio.comidas.map((item) => (
+              <Dialog.Trigger className="flex items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id} onClick={() => handleRemoveFood(item.name, item.slug, item.id)}>
+                {item.name}
+              </Dialog.Trigger>
+            ))}
+
+            {isRemoveFoodFromMenuModalOpened && (
+              <RemoveFoodFromMenu
+                key={foodId}
+                title={foodTitle}
+                foodSlug={foodSlug}
+                setRemoveFoodModal={setIsRemoveFoodFromMenuModalOpened}
+                slug={slug}
+              />
+            )}
+          </Dialog.Root>
         </div>
       </div>
 
@@ -105,5 +131,6 @@ export function FoodsAdmin() {
         </div>
       </div>
     </div>
+    </>
   )
 }

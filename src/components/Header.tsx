@@ -24,8 +24,7 @@ export function Header() {
   return (
     <div className="flex relative items-center justify-between bg-red-700 w-full px-4 lg:px-12 py-6 text-slate-50">
       <Link to={'/'} className="flex flex-col leading-3 tracking-wide font-bold cursor-pointer hover:scale-105 duration-150 transition-all">
-        <h1 className="text-4xl">Divine</h1>
-        <p className="flex pl-10 text-orange-400">Barbecue</p>
+        <img src="/Logo.png" alt="Logo Divine Barbecue" className="w-20" />
       </Link>
 
       <button

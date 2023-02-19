@@ -1,0 +1,8 @@
+mutation DisconnectFoodFromMenu ($slug: String!, $foodSlug: String!) {
+  updateCardapio(
+    data: {comidas: {disconnect: {slug: $foodSlug}}}
+    where: {slug: $slug}
+  ) {
+    id
+  }
+}
