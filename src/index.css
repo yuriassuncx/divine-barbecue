@@ -6,4 +6,61 @@
   body {
     @apply scrollbar-thin scrollbar-thumb-red-500 bg-black;
   }
+
+  .imgStyle {
+    @apply bg-gradient-to-r from-blue-500 to-indigo-500 rounded-l-md relative overflow-hidden;
+  }
+
+  .cartoonImg {
+    @apply bg-animation bg-no-repeat absolute inset-0 w-full h-full bg-cover z-10;
+    background-position: 65% 100px;
+  }
+
+  .cloud_one {
+    @apply bg-firstCloud bg-no-repeat absolute top-[65%] left-[10%] w-[180px] h-[100px] bg-contain z-20;
+    transform: translateX(290%);
+    animation: cloud_one 25.5s ease-in 5.9s infinite;
+  }
+
+  .cloud_two {
+    @apply bg-secondCloud bg-no-repeat absolute top-[49%] left-[50%] w-[200px] h-[100px] bg-contain z-0;
+    transform: translateX(290%);
+    animation: cloud_two 18.5s ease-in .9s infinite;
+  }
+
+  @keyframes cloud_one {
+    0% {
+      transform: translateX(290%);
+    }
+
+    100% {
+      transform: translateX(-250%);
+    }
+  }
+
+  @keyframes cloud_two {
+    0% {
+      transform: translateX(160%);
+    }
+
+    100% {
+      transform: translateX(-250%);
+    }
+  }
+
+  .input-group {
+    @apply flex border rounded-xl relative;
+  }
+
+  .input-text {
+    @apply w-full py-4 px-6 border rounded-xl bg-slate-50 focus:outline-none border-none;
+  }
+
+  .input-text + * {
+    color: #CBD5E1;
+  }
+
+  .input-text:focus + * {
+    color: #6366f1;
+  }
 }

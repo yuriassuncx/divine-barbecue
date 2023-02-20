@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Input } from '../components/Input';
 
 import { useGetAdminByEmailQuery } from '../graphql/generated';
 import { useApplication } from '../hooks/useApplication';
@@ -24,37 +25,44 @@ export function Login() {
   });
 
   return (
-    <div className="max-w-2xl mx-2 lg:mx-auto mt-12 text-white">
-      <div className="p-8 bg-stone-700 border border-gray-500 rounded">
-        <strong className="text-2xl mb-6 block">Faça login como administrador!</strong>
-
-        <div className="flex flex-col gap-2 w-full">
-          <input
-            className="bg-gray-900 rounded px-5 h-14"
-            type="email"
-            placeholder="Digite seu email"
-            onChange={event => setEmail(event.target.value)}
-            value={email}
-          />
-
-          <input
-              className="bg-gray-900 rounded px-5 h-14"
-              type="password"
-              placeholder="Digite sua senha"
-              onChange={event => setPassword(event.target.value)}
-              value={password}
-          />
-
-          <button
-              type="submit"
-              disabled={!email || !password}
-              onClick={() => signIn(data, password)}
-              className="mt-4 bg-amber-500 uppercase py-4 rounded font-bold text-sm hover:bg-amber-400 transition-colors disabled:opacity-50"
-          >
-              Fazer login
-          </button>
+    <div className="flex h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
+      <section className="grid md:grid-cols-2 m-auto bg-slate-50 rounded-md w-3/5 h-3/5">
+        <div className="imgStyle">
+          <div className="cartoonImg" />
+          <div className="cloud_one" />
+          <div className="cloud_two" />
         </div>
-      </div>
+
+        <div className="flex flex-col justify-evenly right">
+          <div className="flex flex-col gap-4 text-center py-10 px-3">
+            <Input
+              className="input-text"
+              type="email"
+              placeholder="Digite seu email"
+              onChange={event => setEmail(event.target.value)}
+              value={email}
+            />
+
+            <Input
+                className="input-text"
+                type="password"
+                placeholder="Digite sua senha"
+                isPassword={true}
+                onChange={event => setPassword(event.target.value)}
+                value={password}
+            />
+
+            <button
+                type="submit"
+                disabled={!email || !password}
+                onClick={() => signIn(data, password)}
+                className="text-white font-bold py-3 w-full bg-blue-400 rounded-md cursor-pointer hover:-translate-y-1 duration-150 transition disabled:cursor-not-allowed"
+            >
+                Fazer login
+            </button>            
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -14,8 +14,11 @@ module.exports = {
         'background2': "url('/bg2.jpg')",
         'background3': "url('/bg3.jpg')",
         'card_vip': "url('/card_vip.jpeg')",
-        'card_simples': "url('/card_simples.jpeg')"
-      }
+        'card_simples': "url('/card_simples.jpeg')",
+        'animation': "url('/img2.png')",
+        'firstCloud': "url('/cloud_1.png')",
+        'secondCloud': "url('/cloud_2.png')",
+      },
     },
   },
   plugins: [
