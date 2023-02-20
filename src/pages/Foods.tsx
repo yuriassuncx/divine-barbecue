@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ScreenshotButton } from '../components/ScreenshotButton';
 
 import { useGetMenuBySlugQuery } from '../graphql/generated';
 
 export function Foods() {
+  const [screenshot, setScreenshot] = useState<string | null>(null);
   const { slug } = useParams<{ slug: string }>();
   const { data } = useGetMenuBySlugQuery({
     variables: {
@@ -33,7 +36,11 @@ export function Foods() {
       </div>
 
       <div className="relative flex items-center gap-4 justify-center w-full lg:max-w-[1400px] mx-auto pb-3">
-        <button className="flex items-center py-3 px-4 rounded-lg text-black bg-slate-50 hover:scale-110 duration-150 transition-all cursor-pointer">Compartilhar com os amigos</button>
+        <ScreenshotButton
+          screenshot={screenshot}
+          onScreenshotTook={setScreenshot}
+        />
+        
         <button className="flex items-center py-3 px-4 rounded-lg text-black bg-slate-50 hover:scale-110 duration-150 transition-all cursor-pointer">Fazer um pedido</button>
       </div>
     </div>
