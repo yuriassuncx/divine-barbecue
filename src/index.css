@@ -8,7 +8,7 @@
   }
 
   .imgStyle {
-    @apply bg-gradient-to-r from-blue-500 to-indigo-500 rounded-l-md relative overflow-hidden;
+    @apply bg-gradient-to-r from-red-800 to-red-500 rounded-l-md relative overflow-hidden;
   }
 
   .cartoonImg {

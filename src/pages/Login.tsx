@@ -25,7 +25,7 @@ export function Login() {
   });
 
   return (
-    <div className="flex h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
+    <div className="flex h-screen bg-gradient-to-r from-red-500 to-red-900">
       <section className="grid md:grid-cols-2 m-auto bg-slate-50 rounded-md w-3/5 h-3/5">
         <div className="imgStyle">
           <div className="cartoonImg" />
@@ -38,7 +38,7 @@ export function Login() {
             <Input
               className="input-text"
               type="email"
-              placeholder="Digite seu email"
+              placeholder="Seu email"
               onChange={event => setEmail(event.target.value)}
               value={email}
             />
@@ -46,7 +46,7 @@ export function Login() {
             <Input
                 className="input-text"
                 type="password"
-                placeholder="Digite sua senha"
+                placeholder="Sua senha"
                 isPassword={true}
                 onChange={event => setPassword(event.target.value)}
                 value={password}
@@ -56,7 +56,7 @@ export function Login() {
                 type="submit"
                 disabled={!email || !password}
                 onClick={() => signIn(data, password)}
-                className="text-white font-bold py-3 w-full bg-blue-400 rounded-md cursor-pointer hover:-translate-y-1 duration-150 transition disabled:cursor-not-allowed"
+                className="text-white font-bold py-3 w-full bg-red-400 rounded-md cursor-pointer hover:-translate-y-1 duration-150 transition disabled:cursor-not-allowed"
             >
                 Fazer login
             </button>            
