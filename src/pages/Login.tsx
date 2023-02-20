@@ -34,7 +34,9 @@ export function Login() {
         </div>
 
         <div className="flex flex-col justify-evenly right">
-          <div className="flex flex-col gap-4 text-center py-10 px-3">
+          <h1 className="text-center text-2xl font-bold tracking-wide">Entre como Administrador</h1>
+
+          <div className="flex flex-col gap-4 text-center py-3 px-3">
             <Input
               className="input-text"
               type="email"

@@ -117,7 +117,7 @@ export function FoodsAdmin() {
       </button>
 
       <div className="relative flex items-center justify-center w-full lg:max-w-[1000px] xl:max-w-[1200px] 2xl:max-w-[1280px] mx-auto">
-        <div className="flex space-x-6 overflow-x-scroll p-2 lg:-m-2">
+        <div className="flex space-x-6 overflow-x-scroll scrollbar-thin lg:scrollbar-track-red-700 lg:scrollbar-thumb-amber-400 p-2 lg:-m-2">
           {foods?.comidas.map((food) => (
             <Card
               key={food.id}

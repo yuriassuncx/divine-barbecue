@@ -32,7 +32,7 @@ export function Foods() {
         </div>
       </div>
 
-      <div className="relative flex items-center gap-3 justify-center w-full lg:max-w-[1400px] mx-auto pb-3">
+      <div className="relative flex items-center gap-4 justify-center w-full lg:max-w-[1400px] mx-auto pb-3">
         <button className="flex items-center py-3 px-4 rounded-lg text-black bg-slate-50 hover:scale-110 duration-150 transition-all cursor-pointer">Compartilhar com os amigos</button>
         <button className="flex items-center py-3 px-4 rounded-lg text-black bg-slate-50 hover:scale-110 duration-150 transition-all cursor-pointer">Fazer um pedido</button>
       </div>
