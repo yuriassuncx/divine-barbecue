@@ -1,10 +1,6 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { useGetMenuBySlugQuery } from '../graphql/generated';
-
-import { Card } from '../components/Card';
-
-import toast from 'react-hot-toast';
 
 export function Foods() {
   const { slug } = useParams<{ slug: string }>();
@@ -13,8 +9,6 @@ export function Foods() {
       slug: slug,
     },
   });
-
-  const [widgets, setWidgets] = useState<string[]>([]);
 
   if (!data || !data.cardapio) {
     return (

@@ -2,16 +2,13 @@ interface CardProps {
   name: string;
   description?: string;
   photoUrl?: string;
-  onDragStart: (e: React.DragEvent) => void;
   handleAddFoodWithClick: () => void;
 }
 
-export function Card({ name, description, photoUrl, onDragStart, handleAddFoodWithClick }: CardProps) {
+export function Card({ name, description, photoUrl, handleAddFoodWithClick }: CardProps) {
   return (
     <div
       className="flex items-center justify-center overflow-hidden shadow-xl border-[3px] border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl  gap-2 bg-slate-50 min-w-[250px] py-4 px-2 rounded-lg hover:scale-105 duration-150 transition cursor-pointer"
-      draggable
-      onDragStart={onDragStart}
       onClick={handleAddFoodWithClick}
     >
       <img

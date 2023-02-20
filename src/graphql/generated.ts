@@ -5101,6 +5101,13 @@ export type InsertFoodToMenuMutationVariables = Exact<{
 
 export type InsertFoodToMenuMutation = { __typename?: 'Mutation', updateComida?: { __typename?: 'Comida', id: string } | null };
 
+export type PublishMenuMutationVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type PublishMenuMutation = { __typename?: 'Mutation', publishCardapio?: { __typename?: 'Cardapio', id: string } | null };
+
 export type GetAdminByEmailQueryVariables = Exact<{
   email: Scalars['String'];
 }>;
@@ -5235,6 +5242,39 @@ export function useInsertFoodToMenuMutation(baseOptions?: Apollo.MutationHookOpt
 export type InsertFoodToMenuMutationHookResult = ReturnType<typeof useInsertFoodToMenuMutation>;
 export type InsertFoodToMenuMutationResult = Apollo.MutationResult<InsertFoodToMenuMutation>;
 export type InsertFoodToMenuMutationOptions = Apollo.BaseMutationOptions<InsertFoodToMenuMutation, InsertFoodToMenuMutationVariables>;
+export const PublishMenuDocument = gql`
+    mutation PublishMenu($slug: String!) {
+  publishCardapio(where: {slug: $slug}) {
+    id
+  }
+}
+    `;
+export type PublishMenuMutationFn = Apollo.MutationFunction<PublishMenuMutation, PublishMenuMutationVariables>;
+
+/**
+ * __usePublishMenuMutation__
+ *
+ * To run a mutation, you first call `usePublishMenuMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishMenuMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishMenuMutation, { data, loading, error }] = usePublishMenuMutation({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function usePublishMenuMutation(baseOptions?: Apollo.MutationHookOptions<PublishMenuMutation, PublishMenuMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PublishMenuMutation, PublishMenuMutationVariables>(PublishMenuDocument, options);
+      }
+export type PublishMenuMutationHookResult = ReturnType<typeof usePublishMenuMutation>;
+export type PublishMenuMutationResult = Apollo.MutationResult<PublishMenuMutation>;
+export type PublishMenuMutationOptions = Apollo.BaseMutationOptions<PublishMenuMutation, PublishMenuMutationVariables>;
 export const GetAdminByEmailDocument = gql`
     query GetAdminByEmail($email: String!) {
   admin(where: {email: $email}) {

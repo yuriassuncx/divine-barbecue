@@ -1,0 +1,5 @@
+mutation PublishMenu ($slug: String!) {
+  publishCardapio(where: {slug: $slug}) {
+    id
+  }
+}

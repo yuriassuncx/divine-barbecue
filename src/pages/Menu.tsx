@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-import { useApplication } from "../hooks/useApplication";
-import { useGetMenusQuery } from "../graphql/generated";
+import { Link } from 'react-router-dom';
+import { useApplication } from '../hooks/useApplication';
+
+import { useGetMenusQuery } from '../graphql/generated';
 
 export function Menu() {
   const { user } = useApplication();
