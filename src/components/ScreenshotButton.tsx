@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import { Loading } from './Loading';
 
-import { Camera, Trash } from 'phosphor-react';
+import { FacebookShareButton, WhatsappShareButton } from 'react-share';
+
+import { Camera, Trash, WhatsappLogo } from 'phosphor-react';
 import html2canvas from 'html2canvas';
 
 interface ScreenshotButtonProps {
@@ -28,10 +30,8 @@ export function ScreenshotButton({
 
   if (screenshot) {
     return (
-      <button
-        type="button"
-        className="p-1 w-24 h-24 rounded-md border-transparent flex justify-end items-end text:zinc-400 hover:text-zinc-100 transition-colors"
-        onClick={() => onScreenshotTook(null)}
+      <div
+        className="p-1 w-24 h-24 rounded-md border-transparent flex justify-end items-end text:zinc-400 hover:text-zinc-100 transition-colors z-10"
         style={{
             backgroundImage: `url(${screenshot})`,
             backgroundPosition: `right bottom`,
@@ -39,8 +39,14 @@ export function ScreenshotButton({
             backgroundSize: 100,
         }}
       >
-        <Trash weight="fill" />
-      </button>
+        <WhatsappShareButton
+          url="https://divine-barbecue.vercel.app/cardapios"
+          title="Olha que dahora os cardápios da Divine Barbecue:"
+        >
+          <WhatsappLogo weight="fill" size={24} />
+        </WhatsappShareButton>
+        <Trash weight="fill" size={24} onClick={() => onScreenshotTook(null)} className="cursor-pointer" />
+      </div>
     );
   }
 
