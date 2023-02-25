@@ -3789,6 +3789,13 @@ export type ScheduledOperationManyWhereInput = {
   publishedBy?: InputMaybe<UserWhereInput>;
   /** All values containing the given json path. */
   rawPayload_json_path_exists?: InputMaybe<Scalars['String']>;
+  /**
+   * Recursively tries to find the provided JSON scalar value inside the field.
+   * It does use an exact match when comparing values.
+   * If you pass `null` as value the filter will be ignored.
+   * Note: This filter fails if you try to look for a non scalar JSON value!
+   */
+  rawPayload_value_recursive?: InputMaybe<Scalars['Json']>;
   release?: InputMaybe<ScheduledReleaseWhereInput>;
   status?: InputMaybe<ScheduledOperationStatus>;
   /** All values that are contained in given list. */
@@ -3958,6 +3965,13 @@ export type ScheduledOperationWhereInput = {
   publishedBy?: InputMaybe<UserWhereInput>;
   /** All values containing the given json path. */
   rawPayload_json_path_exists?: InputMaybe<Scalars['String']>;
+  /**
+   * Recursively tries to find the provided JSON scalar value inside the field.
+   * It does use an exact match when comparing values.
+   * If you pass `null` as value the filter will be ignored.
+   * Note: This filter fails if you try to look for a non scalar JSON value!
+   */
+  rawPayload_value_recursive?: InputMaybe<Scalars['Json']>;
   release?: InputMaybe<ScheduledReleaseWhereInput>;
   status?: InputMaybe<ScheduledOperationStatus>;
   /** All values that are contained in given list. */
@@ -5011,6 +5025,7 @@ export enum _FilterKind {
   Gte = 'gte',
   In = 'in',
   JsonPathExists = 'json_path_exists',
+  JsonValueRecursive = 'json_value_recursive',
   Lt = 'lt',
   Lte = 'lte',
   NotContains = 'not_contains',
@@ -5100,6 +5115,13 @@ export type InsertFoodToMenuMutationVariables = Exact<{
 
 
 export type InsertFoodToMenuMutation = { __typename?: 'Mutation', updateComida?: { __typename?: 'Comida', id: string } | null };
+
+export type PublishFoodMutationVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type PublishFoodMutation = { __typename?: 'Mutation', publishComida?: { __typename?: 'Comida', id: string } | null };
 
 export type PublishMenuMutationVariables = Exact<{
   slug: Scalars['String'];
@@ -5242,6 +5264,39 @@ export function useInsertFoodToMenuMutation(baseOptions?: Apollo.MutationHookOpt
 export type InsertFoodToMenuMutationHookResult = ReturnType<typeof useInsertFoodToMenuMutation>;
 export type InsertFoodToMenuMutationResult = Apollo.MutationResult<InsertFoodToMenuMutation>;
 export type InsertFoodToMenuMutationOptions = Apollo.BaseMutationOptions<InsertFoodToMenuMutation, InsertFoodToMenuMutationVariables>;
+export const PublishFoodDocument = gql`
+    mutation PublishFood($slug: String!) {
+  publishComida(where: {slug: $slug}) {
+    id
+  }
+}
+    `;
+export type PublishFoodMutationFn = Apollo.MutationFunction<PublishFoodMutation, PublishFoodMutationVariables>;
+
+/**
+ * __usePublishFoodMutation__
+ *
+ * To run a mutation, you first call `usePublishFoodMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishFoodMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishFoodMutation, { data, loading, error }] = usePublishFoodMutation({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function usePublishFoodMutation(baseOptions?: Apollo.MutationHookOptions<PublishFoodMutation, PublishFoodMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PublishFoodMutation, PublishFoodMutationVariables>(PublishFoodDocument, options);
+      }
+export type PublishFoodMutationHookResult = ReturnType<typeof usePublishFoodMutation>;
+export type PublishFoodMutationResult = Apollo.MutationResult<PublishFoodMutation>;
+export type PublishFoodMutationOptions = Apollo.BaseMutationOptions<PublishFoodMutation, PublishFoodMutationVariables>;
 export const PublishMenuDocument = gql`
     mutation PublishMenu($slug: String!) {
   publishCardapio(where: {slug: $slug}) {

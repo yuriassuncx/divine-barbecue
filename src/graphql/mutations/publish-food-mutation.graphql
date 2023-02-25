@@ -1,0 +1,5 @@
+mutation PublishFood ($slug: String!) {
+  publishComida(where: {slug: $slug}) {
+    id
+  }
+}

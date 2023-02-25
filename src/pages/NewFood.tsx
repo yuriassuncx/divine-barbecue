@@ -1,13 +1,14 @@
 import { useRef } from 'react';
 import { CircleNotch, Cookie } from 'phosphor-react';
 
-import { useCreateNewFoodMutation } from '../graphql/generated';
+import { useCreateNewFoodMutation, usePublishFoodMutation } from '../graphql/generated';
 import toast from 'react-hot-toast';
 
 export function NewFood() {
   const foodRef = useRef<HTMLInputElement>(null);
 
-  const [createNewFood, { loading }] = useCreateNewFoodMutation();
+  const [createNewFood, { 'loading': loadingNewFood }] = useCreateNewFoodMutation();
+  const [publishFood, { 'loading': loadingPublishFood }] = usePublishFoodMutation();
 
   async function handleCreateFood(e: React.FormEvent) {
     e.preventDefault();
@@ -27,11 +28,17 @@ export function NewFood() {
       },
     });
 
-    if (!loading) {
+    if (!loadingNewFood) {
       toast.success(`${foodRef.current!.value} será adicionado ao cardápio!`, {
         position: 'bottom-center',
       });
     }
+
+    await publishFood({
+      variables: {
+        slug: foodRef.current!.value.toLowerCase().split(' ').join('-')
+      },
+    });
   }
 
   return (
@@ -61,7 +68,7 @@ export function NewFood() {
           type="submit"
           className="bg-violet-500 px-5 h-12 rounded-md font-semibold flex items-center gap-3 hover:bg-violet-600 transition-colors duration-150 text-white"
         >
-          {loading ? (
+          {loadingNewFood || loadingPublishFood ? (
             <span className="flex items-center justify-center gap-2">
               <p>Carregando</p>
               <CircleNotch size={14} className="animate-spin" />
