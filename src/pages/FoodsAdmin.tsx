@@ -77,10 +77,10 @@ export function FoodsAdmin() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-6 lg:mx-0 xs:h-screen text-white">
+    <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-6 lg:mx-0 h-[130vh] text-white">
       <h1 className="font-bold text-3xl text-center">{data.cardapio.title} - Página do Admin</h1>
 
-      <div className={`p-6 md:p-8 pb-3 w-[365px] sm:w-[600px] md:w-[790px] h-[90vh] lg:h-screen rounded-md shadow-lg border-white ${slug === 'cardapio-simples' ? 'bg-card_simples' : 'bg-card_vip'} bg-contain bg-no-repeat sm:bg-cover`}>
+      <div className={`p-6 pb-3 h-[90vh] lg:w-[37vw] rounded-md border-2 border-opacity-30 shadow-lg border-white ${slug === 'cardapio-simples' ? 'bg-card_simples' : 'bg-card_vip'} bg-cover bg-no-repeat bg-center`}>
         <div className="grid grid-cols-2 gap-3">
           <Dialog.Root>
             {data.cardapio.comidas.map((item) => (
