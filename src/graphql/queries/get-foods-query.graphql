@@ -3,6 +3,7 @@ query GetFoods {
     id
     slug
     name
+    type
     photo {
       url
     }

@@ -6,6 +6,7 @@ query GetMenuBySlug ($slug: String) {
       id
       slug
       name
+      type
       photo {
         url
       }

@@ -1836,6 +1836,7 @@ export type Comida = Node & {
   slug: Scalars['String'];
   /** System stage field */
   stage: Stage;
+  type?: Maybe<FoodType>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
@@ -1929,6 +1930,7 @@ export type ComidaCreateInput = {
   name: Scalars['String'];
   photo?: InputMaybe<AssetCreateOneInlineInput>;
   slug: Scalars['String'];
+  type?: InputMaybe<FoodType>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -2083,6 +2085,13 @@ export type ComidaManyWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<FoodType>;
+  /** All values that are contained in given list. */
+  type_in?: InputMaybe<Array<InputMaybe<FoodType>>>;
+  /** All values that are not equal to given value. */
+  type_not?: InputMaybe<FoodType>;
+  /** All values that are not contained in given list. */
+  type_not_in?: InputMaybe<Array<InputMaybe<FoodType>>>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -2114,6 +2123,8 @@ export enum ComidaOrderByInput {
   PublishedAtDesc = 'publishedAt_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
+  TypeAsc = 'type_ASC',
+  TypeDesc = 'type_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
 }
@@ -2124,6 +2135,7 @@ export type ComidaUpdateInput = {
   name?: InputMaybe<Scalars['String']>;
   photo?: InputMaybe<AssetUpdateOneInlineInput>;
   slug?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<FoodType>;
 };
 
 export type ComidaUpdateManyInlineInput = {
@@ -2145,6 +2157,7 @@ export type ComidaUpdateManyInlineInput = {
 
 export type ComidaUpdateManyInput = {
   description?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<FoodType>;
 };
 
 export type ComidaUpdateManyWithNestedWhereInput = {
@@ -2324,6 +2337,13 @@ export type ComidaWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<FoodType>;
+  /** All values that are contained in given list. */
+  type_in?: InputMaybe<Array<InputMaybe<FoodType>>>;
+  /** All values that are not equal to given value. */
+  type_not?: InputMaybe<FoodType>;
+  /** All values that are not contained in given list. */
+  type_not_in?: InputMaybe<Array<InputMaybe<FoodType>>>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -2437,6 +2457,14 @@ export type DocumentVersion = {
   revision: Scalars['Int'];
   stage: Stage;
 };
+
+export enum FoodType {
+  Acompanhamento = 'acompanhamento',
+  Disponivel = 'disponivel',
+  Entrada = 'entrada',
+  Servico = 'servico',
+  Sobremesa = 'sobremesa'
+}
 
 export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
@@ -5140,14 +5168,14 @@ export type GetAdminByEmailQuery = { __typename?: 'Query', admin?: { __typename?
 export type GetFoodsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetFoodsQuery = { __typename?: 'Query', comidas: Array<{ __typename?: 'Comida', id: string, slug: string, name: string, photo?: { __typename?: 'Asset', url: string } | null }> };
+export type GetFoodsQuery = { __typename?: 'Query', comidas: Array<{ __typename?: 'Comida', id: string, slug: string, name: string, type?: FoodType | null, photo?: { __typename?: 'Asset', url: string } | null }> };
 
 export type GetMenuBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetMenuBySlugQuery = { __typename?: 'Query', cardapio?: { __typename?: 'Cardapio', title: string, slug: string, comidas: Array<{ __typename?: 'Comida', id: string, slug: string, name: string, photo?: { __typename?: 'Asset', url: string } | null }> } | null };
+export type GetMenuBySlugQuery = { __typename?: 'Query', cardapio?: { __typename?: 'Cardapio', title: string, slug: string, comidas: Array<{ __typename?: 'Comida', id: string, slug: string, name: string, type?: FoodType | null, photo?: { __typename?: 'Asset', url: string } | null }> } | null };
 
 export type GetMenusQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5377,6 +5405,7 @@ export const GetFoodsDocument = gql`
     id
     slug
     name
+    type
     photo {
       url
     }
@@ -5419,6 +5448,7 @@ export const GetMenuBySlugDocument = gql`
       id
       slug
       name
+      type
       photo {
         url
       }

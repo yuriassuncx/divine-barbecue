@@ -22,7 +22,7 @@ export function FoodsAdmin() {
   const [foodSlug, setFoodSlug] = useState("");
   const [foodId, setFoodId] = useState("");
 
-  const { data, refetch } = useGetMenuBySlugQuery({
+  const { data } = useGetMenuBySlugQuery({
     variables: {
       slug: slug,
     }
@@ -77,29 +77,66 @@ export function FoodsAdmin() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-6 lg:mx-0 h-[130vh] text-white">
+    <div className="flex flex-col items-center justify-between font-slab font-bold pt-12 gap-12 mx-6 lg:mx-0 h-[130vh] text-white">
       <h1 className="font-bold text-3xl text-center">{data.cardapio.title} - Página do Admin</h1>
 
-      <div className={`p-6 pb-3 h-[90vh] lg:w-[37vw] rounded-md border-2 border-opacity-30 shadow-lg border-white ${slug === 'cardapio-simples' ? 'bg-card_simples' : 'bg-card_vip'} bg-cover bg-no-repeat bg-center`}>
-        <div className="grid grid-cols-2 gap-3">
-          <Dialog.Root>
-            {data.cardapio.comidas.map((item) => (
+      <div className={`p-3 pb-3 px-7 md:px-12 h-[90vh] lg:w-[37vw] rounded-md border-2 border-opacity-30 shadow-lg scrollbar overflow-y-scroll border-white ${slug === 'cardapio-simples' ? 'bg-card_simples text-white' : 'bg-card_vip text-[#f4da60]'} bg-cover bg-no-repeat bg-center`}>
+        <Dialog.Root>
+          <h1 className="text-center pb-12 text-3xl">Entrada</h1>
+          <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+            {data.cardapio.comidas.filter((food) => food.type === 'entrada').map(item => (
               <Dialog.Trigger className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id} onClick={() => handleRemoveFood(item.name, item.slug, item.id)}>
                 {item.name}
               </Dialog.Trigger>
             ))}
+          </div>
 
-            {isRemoveFoodFromMenuModalOpened && (
-              <RemoveFoodFromMenu
-                key={foodId}
-                title={foodTitle}
-                foodSlug={foodSlug}
-                setRemoveFoodModal={setIsRemoveFoodFromMenuModalOpened}
-                slug={slug}
-              />
-            )}
-          </Dialog.Root>
-        </div>
+          <h1 className="text-center pt-12 pb-12 text-3xl">Acompanhamentos</h1>
+          <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+            {data.cardapio.comidas.filter((food) => food.type === 'acompanhamento').map(item => (
+              <Dialog.Trigger className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id} onClick={() => handleRemoveFood(item.name, item.slug, item.id)}>
+                {item.name}
+              </Dialog.Trigger>
+            ))}
+          </div>
+
+          <h1 className="text-center pt-12 pb-12 text-3xl">Sobremesas</h1>
+          <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+            {data.cardapio.comidas.filter((food) => food.type === 'sobremesa').map(item => (
+              <Dialog.Trigger className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id} onClick={() => handleRemoveFood(item.name, item.slug, item.id)}>
+                {item.name}
+              </Dialog.Trigger>
+            ))}
+          </div>
+
+          <h1 className="text-center pt-12 pb-12 text-3xl">Temos</h1>
+          <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+            {data.cardapio.comidas.filter((food) => food.type === 'disponivel').map(item => (
+              <Dialog.Trigger className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id} onClick={() => handleRemoveFood(item.name, item.slug, item.id)}>
+                {item.name}
+              </Dialog.Trigger>
+            ))}
+          </div>
+
+          <h1 className="text-center pt-12 pb-12 text-3xl">Serviços</h1>
+          <div className="grid grid-cols-2 gap-3 pb-12">
+            {data.cardapio.comidas.filter((food) => food.type === 'servico').map(item => (
+              <Dialog.Trigger className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id} onClick={() => handleRemoveFood(item.name, item.slug, item.id)}>
+                {item.name}
+              </Dialog.Trigger>
+            ))}
+          </div>
+
+          {isRemoveFoodFromMenuModalOpened && (
+            <RemoveFoodFromMenu
+              key={foodId}
+              title={foodTitle}
+              foodSlug={foodSlug}
+              setRemoveFoodModal={setIsRemoveFoodFromMenuModalOpened}
+              slug={slug}
+            />
+          )}
+        </Dialog.Root>
       </div>
 
       <button

@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Josefin Sans', 'sans-serif']
+        'sans': ['Josefin Sans', 'sans-serif'],
+        'slab': ['Josefin Slab', 'sans-serif'],
       },
       backgroundImage: {
         'background1': "url('/bg1.jpg')",

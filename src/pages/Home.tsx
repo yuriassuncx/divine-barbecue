@@ -7,9 +7,8 @@ export function Home() {
         <p className="leading-8">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit id repellat velit, eum optio deserunt adipisci ullam placeat eligendi iure suscipit quae est harum ratione quo omnis quasi reprehenderit quisquam?</p>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center gap-6">
-        <button className="flex items-center py-3 px-4 rounded-full bg-black text-white hover:scale-110 duration-150 transition-all cursor-pointer">Peça já a sua!</button>
-        <button className="flex items-center py-3 px-4 rounded-full text-black bg-slate-50 hover:scale-110 duration-150 transition-all cursor-pointer">Reserve a sua mesa agora!</button>
+      <div className="flex items-center gap-6">
+        <button className="flex items-center py-3 px-4 rounded-full text-black bg-slate-50 hover:scale-110 duration-150 transition-all cursor-pointer font-bold">Explore nossos cardápios!</button>
       </div>
     </main>
   )
