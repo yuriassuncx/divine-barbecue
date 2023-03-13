@@ -78,7 +78,7 @@ export function FoodsAdmin() {
 
   return (
     <div className="flex flex-col items-center justify-between font-slab font-bold pt-12 gap-12 mx-6 lg:mx-0 h-[130vh] text-white">
-      <h1 className="font-bold text-3xl text-center">{data.cardapio.title} - Página do Admin</h1>
+      <h1 className={`font-bold text-3xl text-center ${data.cardapio.title === 'Cardápio Vip' ? 'text-[#f4da60]' : 'text-white'}`}>{data.cardapio.title} - Página do Admin</h1>
 
       <div className={`p-3 pb-3 px-7 md:px-12 h-[90vh] lg:w-[37vw] rounded-md border-2 border-opacity-30 shadow-lg scrollbar overflow-y-scroll border-white ${slug === 'cardapio-simples' ? 'bg-card_simples text-white' : 'bg-card_vip text-[#f4da60]'} bg-cover bg-no-repeat bg-center`}>
         <Dialog.Root>

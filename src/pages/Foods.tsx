@@ -23,14 +23,51 @@ export function Foods() {
 
   return (
     <div className="flex flex-col items-center justify-between pt-12 gap-12 mx-6 lg:mx-0 h-screen text-white">
-      <h1 className="font-bold text-3xl text-center">{data.cardapio.title}</h1>
+      <h1 className={`font-bold text-3xl text-center ${data.cardapio.title === 'Cardápio Vip' ? 'text-[#f4da60]' : 'text-white'}`}>{data.cardapio.title}</h1>
 
-      <div className={`p-6 pb-3 h-[80vh] lg:w-[60vh] rounded-md border-2 border-opacity-30 shadow-lg border-white ${slug === 'cardapio-simples' ? 'bg-card_simples' : 'bg-card_vip'} bg-cover bg-no-repeat bg-center`}>
-        <div className="grid grid-cols-2 gap-3">
-          {data.cardapio.comidas.map((item) => (
-            <p className="uppercase tracking-wider hover:scale-105 duration-150 transition cursor-pointer" key={item.id}>
+      <div className={`p-3 pb-3 px-7 md:px-12 h-[90vh] lg:w-[37vw] rounded-md border-2 border-opacity-30 shadow-lg scrollbar overflow-y-scroll border-white ${slug === 'cardapio-simples' ? 'bg-card_simples text-white' : 'bg-card_vip text-[#f4da60]'} bg-cover bg-no-repeat bg-center`}>
+        <h1 className="text-center pb-12 text-3xl">Entrada</h1>
+        <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+          {data.cardapio.comidas.filter((food) => food.type === 'entrada').map(item => (
+            <span className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id}>
               {item.name}
-            </p>
+            </span>
+          ))}
+        </div>
+
+        <h1 className="text-center pt-12 pb-12 text-3xl">Acompanhamentos</h1>
+        <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+          {data.cardapio.comidas.filter((food) => food.type === 'acompanhamento').map(item => (
+            <span className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id}>
+              {item.name}
+            </span>
+          ))}
+        </div>
+
+        <h1 className="text-center pt-12 pb-12 text-3xl">Sobremesas</h1>
+        <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+          {data.cardapio.comidas.filter((food) => food.type === 'sobremesa').map(item => (
+            <span className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id}>
+              {item.name}
+            </span>
+          ))}
+        </div>
+
+        <h1 className="text-center pt-12 pb-12 text-3xl">Temos</h1>
+        <div className="grid grid-cols-2 gap-3 border-b border-slate-400 pb-12">
+          {data.cardapio.comidas.filter((food) => food.type === 'disponivel').map(item => (
+            <span className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id}>
+              {item.name}
+            </span>
+          ))}
+        </div>
+
+        <h1 className="text-center pt-12 pb-12 text-3xl">Serviços</h1>
+        <div className="grid grid-cols-2 gap-3 pb-12">
+          {data.cardapio.comidas.filter((food) => food.type === 'servico').map(item => (
+            <span className="flex text-start items-start uppercase tracking-wider hover:scale-105 duration-150 transition" key={item.id}>
+              {item.name}
+            </span>
           ))}
         </div>
       </div>
